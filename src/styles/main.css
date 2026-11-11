@@ -446,6 +446,11 @@ body {
 .joker-btn {
   position: relative;
 }
+
+/* Yeni oyun düyməsi — topbar-da mavi rəng */
+.topbar-newgame-btn {
+  color: var(--az-blue);
+}
 .joker-btn[aria-expanded="true"] {
   background: var(--bg-key);
   color: var(--az-blue);

@@ -345,6 +345,13 @@ function bindUIButtons() {
   document.getElementById('btn-menu')    ?.addEventListener('click', () => openScreen('menu'));
   document.getElementById('btn-settings')?.addEventListener('click', () => openScreen('settings'));
 
+  // Yeni Oyun düyməsi (topbar)
+  document.getElementById('btn-new-game-top')?.addEventListener('click', () => {
+    const closeBtn = document.getElementById('close-mode-select');
+    if (closeBtn) closeBtn.removeAttribute('hidden');
+    openScreen('mode-select');
+  });
+
   // Menyu
   document.getElementById('btn-daily')       ?.addEventListener('click', () => startMode(MODE.DAILY));
   document.getElementById('btn-mode-select') ?.addEventListener('click', () => {
