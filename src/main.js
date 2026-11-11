@@ -208,8 +208,8 @@ async function onGuessSubmitted({ word, result, rowIndex }) {
 
 function onGameWin({ attempt, earned, streak }) {
   board.bounceRow(gameState.guesses.length - 1);
-  sounds.win();
-  haptics.win();
+  sounds.win?.();
+  haptics.win?.();
   launchConfetti();
   setTimeout(() => showResultScreen({
     isWon:  true,
@@ -225,17 +225,24 @@ function onGameWin({ attempt, earned, streak }) {
 }
 
 function onGameLose({ secret, consolation }) {
-  sounds.lose();
-  haptics.lose();
-  setTimeout(() => showResultScreen({
-    isWon:  false,
-    secret,
-    earned: consolation,
-    results: gameState.results,
-    mode:    gameState.mode,
-    dateStr: gameState.dateStr,
-    maxGuesses: gameState.maxGuesses,
-  }), 1500);
+  // revealRow animasiyası bitdikdən sonra nəticə ekranını göstər
+  // 5 hərfli söz üçün animasiya ~1700ms, 6 hərfli ~2000ms
+  // revealDone() onGuessSubmitted-dən sonra çağırılır, ona görə
+  // burada biraz gözləyirik
+  const revealMs = gameState.wordLen * 300 + 500;
+  setTimeout(() => {
+    sounds.lose?.();
+    haptics.lose?.();
+    showResultScreen({
+      isWon:  false,
+      secret,
+      earned: consolation,
+      results: gameState.results,
+      mode:    gameState.mode,
+      dateStr: gameState.dateStr,
+      maxGuesses: gameState.maxGuesses,
+    });
+  }, revealMs + 400);
 }
 
 function onCoinsChange({ coins, delta }) {
