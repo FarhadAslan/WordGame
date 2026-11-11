@@ -19,10 +19,39 @@ export function initHintsUI(board, keyboard, prefs) {
   _keyboard = keyboard;
   _prefs    = prefs;
 
+  // Joker haqqı düyməsi — açıb/bağla
+  const jokerBtn   = document.getElementById('btn-joker');
+  const jokerPanel = document.getElementById('joker-panel');
+  const jokerClose = document.getElementById('joker-close');
+
+  jokerBtn?.addEventListener('click', () => {
+    const isOpen = !jokerPanel.hidden;
+    jokerPanel.hidden = isOpen;
+    jokerBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  jokerClose?.addEventListener('click', () => {
+    jokerPanel.hidden = true;
+    jokerBtn?.setAttribute('aria-expanded', 'false');
+  });
+
+  // Panelin xaricinə tıklandıqda bağla
+  document.addEventListener('click', (e) => {
+    if (!jokerPanel.hidden &&
+        !jokerPanel.contains(e.target) &&
+        !jokerBtn.contains(e.target)) {
+      jokerPanel.hidden = true;
+      jokerBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   // İpucu düymələri
   document.querySelectorAll('.hint-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const type = btn.dataset.hint;
+      // Paneli bağla, sonra hint işlət
+      jokerPanel.hidden = true;
+      jokerBtn?.setAttribute('aria-expanded', 'false');
       requestHint(type);
     });
   });

@@ -44,6 +44,7 @@
           </svg>
           <span class="coin-count" id="coin-count">0</span>
         </span>
+        <button class="topbar-btn joker-btn" id="btn-joker" aria-label="Joker haqqı" aria-expanded="false">🃏</button>
         <button class="topbar-btn" id="btn-settings" aria-label="Ayarlar">⚙️</button>
       </div>
     </header>
@@ -61,24 +62,30 @@
         <div class="board" id="board" role="grid"></div>
       </section>
 
-      <!-- İPUCU PANELİ -->
-      <section class="hint-panel" aria-label="İpucular">
-        <button class="hint-btn" id="hint-reveal" data-hint="reveal" aria-label="Hərf aç (40 xal)">
-          💡<span class="hint-label">Aç</span><span class="hint-cost">40🪙</span>
-        </button>
-        <button class="hint-btn" id="hint-present" data-hint="present" aria-label="Var olan hərf (25 xal)">
-          🔎<span class="hint-label">Hərf</span><span class="hint-cost">25🪙</span>
-        </button>
-        <button class="hint-btn" id="hint-eliminate" data-hint="eliminate" aria-label="Artıq hərfləri sil (30 xal)">
-          🧹<span class="hint-label">Sil</span><span class="hint-cost">30🪙</span>
-        </button>
-        <button class="hint-btn" id="hint-meaning" data-hint="meaning" aria-label="Məna/İpucu (50 xal)">
-          📖<span class="hint-label">Məna</span><span class="hint-cost">50🪙</span>
-        </button>
-        <button class="hint-btn" id="hint-extraguess" data-hint="extraguess" aria-label="Əlavə cəhd (80 xal)">
-          ➕<span class="hint-label">Cəhd</span><span class="hint-cost">80🪙</span>
-        </button>
-      </section>
+      <!-- İPUCU PANELİ — Joker haqqı dropdown -->
+      <div class="joker-panel" id="joker-panel" aria-label="Joker haqqı" hidden>
+        <div class="joker-panel-header">
+          <span>🃏 Joker haqqı</span>
+          <button class="joker-close" id="joker-close" aria-label="Bağla">✕</button>
+        </div>
+        <div class="joker-grid">
+          <button class="hint-btn" id="hint-reveal" data-hint="reveal" aria-label="Hərf aç (40 xal)">
+            💡<span class="hint-label">Aç</span><span class="hint-cost">40🪙</span>
+          </button>
+          <button class="hint-btn" id="hint-present" data-hint="present" aria-label="Var olan hərf (25 xal)">
+            🔎<span class="hint-label">Hərf</span><span class="hint-cost">25🪙</span>
+          </button>
+          <button class="hint-btn" id="hint-eliminate" data-hint="eliminate" aria-label="Artıq hərfləri sil (30 xal)">
+            🧹<span class="hint-label">Sil</span><span class="hint-cost">30🪙</span>
+          </button>
+          <button class="hint-btn" id="hint-meaning" data-hint="meaning" aria-label="Məna/İpucu (50 xal)">
+            📖<span class="hint-label">Məna</span><span class="hint-cost">50🪙</span>
+          </button>
+          <button class="hint-btn" id="hint-extraguess" data-hint="extraguess" aria-label="Əlavə cəhd (80 xal)">
+            ➕<span class="hint-label">Cəhd</span><span class="hint-cost">80🪙</span>
+          </button>
+        </div>
+      </div>
 
       <!-- KLAVİATURA -->
       <section class="keyboard-wrap" aria-label="Virtual klaviatura">
@@ -207,7 +214,7 @@
           <p><span class="rule-gray">Boz</span> — bu hərf sözdə yoxdur.</p>
         </div>
         <hr />
-        <h3>İpucular</h3>
+        <h3>Joker haqqı</h3>
         <ul class="rules-hints">
           <li>💡 <b>Aç (40🪙)</b> — gizli bir mövqeyi açır</li>
           <li>🔎 <b>Hərf (25🪙)</b> — sözdə olan bir hərfi göstərir</li>

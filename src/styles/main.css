@@ -181,6 +181,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+  overflow: hidden;
 }
 
 /* ---------- Üst Panel ---------- */
@@ -188,11 +189,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 12px;
+  padding: 8px 12px;
   background: var(--topbar-bg);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-  min-height: 54px;
+  min-height: 48px;
 }
 .topbar-title {
   display: flex;
@@ -309,8 +310,10 @@ body {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  gap: 6px;
-  padding: 6px 0 4px;
+  gap: 4px;
+  padding: 4px 0 2px;
+  position: relative;
+  z-index: 0; /* joker panel z-index: 100 ilə üstündə olacaq */
 }
 
 /* Növbəti söz banneri */
@@ -331,15 +334,16 @@ body {
   justify-content: center;
   width: 100%;
   min-height: 0;
+  /* İpucu paneli topbar-a köçdüyünə görə lövhə daha çox yer ala bilər */
+  max-height: 60dvh;
 }
 .board {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: clamp(4px, 1.2vw, 6px);
-  /* Lövhə boyutu ekrana uyğun hesablanır */
-  width: min(calc(100vw - 32px), 330px);
-  height: min(calc(100vw - 32px) * 6/5, 400px);
+  gap: clamp(3px, 1vw, 5px);
+  width: min(calc(100vw - 32px), 310px);
+  height: min(calc((100dvh - 160px) * 0.56), 370px);
   aspect-ratio: 5/6;
 }
 
@@ -438,31 +442,85 @@ body {
   .tile[data-state="absent"]  { background: var(--color-absent);  color: #fff; border-color: transparent; }
 }
 
-/* ---------- İpucu Paneli ---------- */
-.hint-panel {
+/* ---------- Joker düyməsi (topbar-da) ---------- */
+.joker-btn {
+  position: relative;
+}
+.joker-btn[aria-expanded="true"] {
+  background: var(--bg-key);
+  color: var(--az-blue);
+}
+
+/* ---------- Joker haqqı paneli (topbar altında dropdown) ---------- */
+.joker-panel {
+  position: absolute;
+  top: 48px; /* topbar hündürlüyü */
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 6px 20px var(--shadow);
+  padding: 10px 12px 12px;
+  animation: jokerSlideDown .2s ease;
+}
+.joker-panel[hidden] { display: none; }
+
+@keyframes jokerSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.joker-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 8px;
+}
+.joker-close {
+  background: none;
+  border: none;
+  color: var(--text-sub);
+  font-size: .9rem;
+  cursor: pointer;
+  min-width: 28px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+.joker-close:hover { background: var(--bg-key); }
+
+.joker-grid {
   display: flex;
   gap: 6px;
-  padding: 0 12px;
-  width: 100%;
   justify-content: center;
 }
+
+/* ---------- İpucu Düymələri ---------- */
 .hint-btn {
   flex: 1;
   max-width: 68px;
-  min-height: 48px;
+  min-height: 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
-  background: var(--bg-surface);
+  gap: 2px;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   color: var(--text);
-  font-size: .75rem;
-  transition: background .15s, opacity .2s;
-  padding: 4px 2px;
+  font-size: .85rem;
+  transition: background .15s, opacity .2s, transform .1s;
+  padding: 6px 4px;
 }
 .hint-btn:disabled {
   opacity: .4;
@@ -472,25 +530,28 @@ body {
   background: var(--bg-key);
   transform: scale(.96);
 }
-.hint-label { font-size: .6rem; color: var(--text-sub); }
-.hint-cost  { font-size: .6rem; color: var(--az-blue); font-weight: 700; }
+.hint-btn:not(:disabled):hover {
+  background: var(--bg-key);
+}
+.hint-label { font-size: .62rem; color: var(--text-sub); }
+.hint-cost  { font-size: .62rem; color: var(--az-blue); font-weight: 700; }
 
 /* ---------- Klaviatura ---------- */
 .keyboard-wrap {
   width: 100%;
-  padding: 0 6px 6px;
+  padding: 0 4px 8px;
   flex-shrink: 0;
 }
 .keyboard {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   align-items: center;
   width: 100%;
 }
 .key-row {
   display: flex;
-  gap: 4px;
+  gap: 3px;
   width: 100%;
   justify-content: center;
 }
@@ -498,17 +559,18 @@ body {
   /* Flex ilə avtomatik ölçü */
   flex: 1;
   min-width: 0;
-  max-width: 42px;
-  height: clamp(44px, 10vw, 58px);
+  max-width: 44px;
+  /* Klavişlər daha hündür — barmaqla rahat basmaq üçün */
+  height: clamp(48px, 11.5vw, 62px);
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 6px;
+  border-radius: 7px;
   background: var(--bg-key);
   color: var(--text);
   font-family: var(--font);
-  font-size: clamp(.7rem, 2.5vw, .9rem);
+  font-size: clamp(.75rem, 2.8vw, .95rem);
   font-weight: 700;
   cursor: pointer;
   transition: background .2s, color .2s, transform .1s;
@@ -516,8 +578,8 @@ body {
 }
 .key.wide {
   flex: 1.6;
-  max-width: 60px;
-  font-size: clamp(.6rem, 2vw, .8rem);
+  max-width: 64px;
+  font-size: clamp(.62rem, 2.1vw, .82rem);
 }
 .key[data-state="correct"] { background: var(--color-correct); color: #fff; }
 .key[data-state="present"] { background: var(--color-present); color: #fff; }
