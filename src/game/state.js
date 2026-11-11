@@ -198,6 +198,13 @@ export class GameState {
     if (strLen(this.currentWord) >= this.wordLen) return false;
     this.currentWord += up;
     this.emit(EV.LETTER_ADD, { letter: up, word: this.currentWord });
+
+    // Xanalar dolduqda avtomatik göndər
+    if (strLen(this.currentWord) === this.wordLen) {
+      // Qısa gecikmə — son hərfin animasiyası görünsün
+      setTimeout(() => this.submitGuess(), 120);
+    }
+
     return true;
   }
 

@@ -9,7 +9,7 @@ import { mergeTileState } from '../game/evaluate.js';
 export const KEY_ROWS = [
   ['Q','Ü','E','R','T','Y','U','İ','O','P','Ö','Ğ'],
   ['A','S','D','F','G','H','J','K','L','I','Ə'],
-  ['ENTER','Z','X','C','V','B','N','M','Ç','Ş','⌫'],
+  ['Z','X','C','V','B','N','M','Ç','Ş','⌫'],
 ];
 
 /**
