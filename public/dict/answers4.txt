@@ -4,7 +4,6 @@ abid
 acar
 acıq
 acın
-acış
 acıt
 aciz
 acma
@@ -21,8 +20,6 @@ açma
 adax
 adaq
 adam
-adan
-adas
 adaş
 adda
 adəm
@@ -67,8 +64,6 @@ axsa
 axta
 axur
 ailə
-ajio
-ajur
 akın
 aktı
 akut
@@ -93,12 +88,10 @@ alət
 alfa
 alğı
 alıb
-alıq
 alım
 alın
 alır
 alış
-alib
 alim
 alqı
 allı
@@ -106,7 +99,6 @@ alma
 aloe
 alov
 altı
-alto
 amac
 amal
 aman
@@ -122,14 +114,11 @@ anaş
 anda
 andı
 anıl
-anın
-anis
 anla
 anma
 anod
 anrı
 anus
-anyi
 apağ
 apar
 araq
@@ -166,7 +155,6 @@ aşıq
 aşın
 aşır
 aşiq
-aşla
 aşlı
 aşma
 aşna
@@ -221,7 +209,6 @@ azma
 azot
 azoy
 baba
-babi
 baca
 bacı
 badə
@@ -234,8 +221,7 @@ baxt
 bais
 bakı
 bala
-balı
-ball
+balo
 bani
 bank
 bant
@@ -244,8 +230,6 @@ barə
 barı
 barj
 bark
-barn
-bask
 başa
 başı
 batı
@@ -256,7 +240,6 @@ bazu
 beçə
 belə
 beli
-belq
 beta
 beyt
 bəbə
@@ -271,7 +254,6 @@ bəli
 bəna
 bənd
 bəng
-bəni
 bərə
 bəri
 bərk
@@ -296,7 +278,6 @@ bişi
 bizə
 bizi
 blef
-blin
 blok
 bloq
 bluz
@@ -316,8 +297,6 @@ boza
 börk
 böyə
 böyü
-brak
-bras
 bric
 briq
 briz
@@ -345,7 +324,6 @@ byef
 cadu
 caiz
 cala
-came
 cami
 cana
 canı
@@ -369,7 +347,6 @@ cici
 cida
 cidd
 cift
-ciqa
 cila
 cild
 cing

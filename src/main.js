@@ -429,7 +429,7 @@ async function shareResult() {
   const day     = gameState.mode === MODE.DAILY ? ` #${getDayNumber(gameState.dateStr)}` : '';
   const result  = gameState.isWon ? `${gameState.guesses.length}/${gameState.maxGuesses}` : 'X/6';
   const grid    = buildShareGrid(gameState.results, prefs?.contrast);
-  const text    = `Söz Tap${day} ${result}\n\n${grid}\n\naz.soztap.app`;
+  const text    = `Söz Tap${day} ${result}\n\n${grid}\n\nhttps://word-game-nine-alpha.vercel.app/`;
 
   // Web Share API və ya clipboard
   if (navigator.share) {
